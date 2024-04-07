@@ -6,10 +6,7 @@ function secondsToHms(sec) {
 	const hour = Math.floor(sec / 3600);
 	const minutes = Math.floor(sec % 3600 / 60);
 	const seconds = Math.floor(sec % 3600 % 60);
-	const hourTwoCount = hour >= 10 ? hour : ("0" + hour);
-	const minutesTwoCount = minutes >= 10 ? minutes : ("0" + minutes);
-	const secondsTwoCount = seconds >= 10 ? seconds : ("0" + seconds);
-	return (`${hourTwoCount}:${minutesTwoCount}:${secondsTwoCount}`)
+	return (`${String(hour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`)
 }
 
 const countDown = function() {

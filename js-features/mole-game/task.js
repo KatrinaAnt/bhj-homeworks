@@ -5,19 +5,18 @@ let lostMoleCount = 0;
 let getHole = index => document.getElementById(`hole${index}`);
 for (let i = 1; i < 10; i++) {
 	let hole = getHole(i);
-	const reset = () => {
+	const reset = (text) => {
 		deadMoleCount = 0;
 		deadMole.textContent = deadMoleCount;
 		lostMoleCount = 0;
 		lostMole.textContent = lostMoleCount;
+		alert(text);
 	};
 	hole.onclick = function() {
 		if (deadMoleCount >= 10) {
-			alert("Победа!");
-			reset();
+			reset("Победа!");
 		} else if (lostMoleCount >= 5) {
-			alert("Кроты разбежались. Попробуй снова!")
-			reset();
+			reset("Кроты разбежались. Попробуй снова!");
 		}
 
 		if (hole.classList.contains("hole_has-mole")) {
