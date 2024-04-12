@@ -17,6 +17,13 @@ class Game {
   }
 
   registerEvents() {
+    document.onkeydown = (event) => {
+      if (event.key === this.currentSymbol.textContent) {
+        this.success();
+      } else {
+        this.fail();
+      }
+    }
     /*
       TODO:
       Написать обработчик события, который откликается
