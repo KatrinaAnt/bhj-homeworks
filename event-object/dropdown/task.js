@@ -4,12 +4,12 @@ const dropdownItem = Array.from(document.querySelectorAll(".dropdown__item"));
 const dropdownValue = document.querySelector(".dropdown__value");
 
 dropdown.onclick = function() {
-    dropdownList.classList.toggle("dropdown__list_active");
+	dropdownList.classList.toggle("dropdown__list_active");
 }
 
 dropdownItem.forEach(item => {
-    item.onclick = function() {
-        dropdownValue.textContent = item.textContent;
-        return false;
-    }
+	item.onclick = function() {
+		dropdownValue.textContent = item.textContent;
+		return false;
+	}
 })
