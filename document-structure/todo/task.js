@@ -4,16 +4,17 @@ const form = document.forms["tasks__form"];
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	if (input.value) {
-		let task = document.createElement("div");
-		let taskTitle = document.createElement("div");
-		task.classList.add("task");
-		taskTitle.append(`${input.value}`);
-		taskTitle.classList.add("task__title");
-		task.appendChild(taskTitle);
-		task.insertAdjacentHTML("beforeEnd", `<a href="#" class="task__remove">&times;</a>`);
-		tasksList.appendChild(task);
+	if (!input.value.trim()) {
+		return;
 	}
+	tasksList.insertAdjacentHTML('afterbegin', `
+		<div class="task">
+  			<div class="task__title">
+    			${input.value}
+  			</div>
+  			<a href="#" class="task__remove">&times;</a>
+		</div>
+	`);
 	form.reset();
 
 	let remove = document.getElementsByClassName("task__remove");

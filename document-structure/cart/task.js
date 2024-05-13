@@ -5,9 +5,6 @@ const minus = Array.from(document.getElementsByClassName("product__quantity-cont
 const plus = Array.from(document.getElementsByClassName("product__quantity-control_inc"));
 const quantity = Array.from(document.getElementsByClassName("product__quantity-value"));
 const button = Array.from(document.getElementsByClassName("product__add"));
-let productInCart = [];
-
-console.log(cart);
 
 function minusClick(item, index) {
 	item.addEventListener("click", () => {
@@ -24,23 +21,21 @@ function plusClick(item, index) {
 }
 
 function productAdd(item, index) {
-	let product = products[index].cloneNode(false);
 	item.addEventListener("click", () => {
-		let validate = productInCart.some((element) => {
-			if (element.getAttribute("data-id") === product.getAttribute("data-id")) {
-				return true;
-			} else {
-				return false;
-			}
-		});
+		const productInCart = Array.from(document.getElementsByClassName("cart__product"));
+		let validate = productInCart.find((element) => {
+			return(element.getAttribute("data-id") === products[index].getAttribute("data-id"))}
+		);
 		if (!validate) {
-			productInCart.push(product);
-			product.appendChild(image[index].cloneNode(false));
-			product.appendChild(quantity[index].cloneNode(true));
-			cart[0].appendChild(product);
+			cart[0].insertAdjacentHTML("beforeEnd", `
+				<div class="cart__product" data-id="${products[index].getAttribute("data-id")}">
+					<img class="cart__product-image" src="${image[index].getAttribute("src")}">
+					<div class="cart__product-count">${quantity[index].textContent.trim()}</div>
+				</div>
+			`);
 			return;
 		} else {
-			product.lastElementChild.textContent = Number(product.lastElementChild.textContent) + Number(quantity[index].textContent);
+			productInCart[index].lastElementChild.textContent = Number(productInCart[index].lastElementChild.textContent) + Number(quantity[index].textContent);
 		}
 	});
 }
