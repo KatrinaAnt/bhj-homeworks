@@ -23,9 +23,7 @@ function plusClick(item, index) {
 function productAdd(item, index) {
 	item.addEventListener("click", () => {
 		const productInCart = Array.from(document.getElementsByClassName("cart__product"));
-		let validate = productInCart.find((element) => {
-			return(element.getAttribute("data-id") === products[index].getAttribute("data-id"))}
-		);
+		let validate = productInCart.find((element) => (element.getAttribute("data-id") === products[index].getAttribute("data-id")));
 		if (!validate) {
 			cart[0].insertAdjacentHTML("beforeEnd", `
 				<div class="cart__product" data-id="${products[index].getAttribute("data-id")}">
@@ -35,7 +33,7 @@ function productAdd(item, index) {
 			`);
 			return;
 		} else {
-			productInCart[index].lastElementChild.textContent = Number(productInCart[index].lastElementChild.textContent) + Number(quantity[index].textContent);
+			validate.lastElementChild.textContent = Number(validate.lastElementChild.textContent) + Number(quantity[index].textContent);
 		}
 	});
 }

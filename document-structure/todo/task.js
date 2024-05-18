@@ -7,7 +7,7 @@ form.addEventListener("submit", (event) => {
 	if (!input.value.trim()) {
 		return;
 	}
-	tasksList.insertAdjacentHTML('afterbegin', `
+	tasksList.insertAdjacentHTML("beforeEnd", `
 		<div class="task">
   			<div class="task__title">
     			${input.value}
