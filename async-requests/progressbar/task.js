@@ -6,7 +6,7 @@ document.forms.form.addEventListener("submit", (event) => {
 	xhr.upload.addEventListener("progress", (event) => {
 		progress.value = event.loaded / event.total;
 	});
-	xhr.addEventListener("readystatechange", () => {
+	xhr.addEventListener("load", () => {
 		if (xhr.readyState === xhr.DONE) {
 			alert("Файл загружен на сервер");
 			progress.value = 0.0;

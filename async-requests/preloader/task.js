@@ -7,8 +7,10 @@ if (storeValute) {
 	imgloader.classList.remove("loader_active");
 	addValuteList(JSON.parse(storeValute));
 } else {
-	xhr.onreadystatechange = () => {
-		if (xhr.readyState === xhr.DONE) {
+	xhr.onload = () => {
+		if(xhr.status != 200) {
+			alert(`Ошибка ${xhr.status}: ${xhr.statusText}`)
+		}else if (xhr.readyState === xhr.DONE) {
 			imgloader.classList.remove("loader_active");
 			const answer = JSON.parse(xhr.response);
 			const valute = Object.values(answer.response.Valute);
